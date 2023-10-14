@@ -43,7 +43,7 @@ public class DAOUsersImpl extends ConexionDB implements DAOUsers{
         
        
         boolean usuarioEncontrado = false;
-        login lg = new login();
+        
         try{
             this.Conectar();
             PreparedStatement st = this.conexion.prepareStatement("SELECT name, password FROM users");
@@ -59,7 +59,7 @@ public class DAOUsersImpl extends ConexionDB implements DAOUsers{
                     
                     app ventana = new app();
                     ventana.setVisible(true);
-                    lg.dispose();
+                    
                     
                     return true;
                     

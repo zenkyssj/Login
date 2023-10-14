@@ -1,11 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package com.views;
 
 import com.app.DAOListasImpl;
+import com.app.DAOTareasImpl;
 import com.interfaces.DAOListas;
+import com.interfaces.DAOTareas;
 import com.models.Listas;
 import java.awt.Color;
 import java.time.LocalDate;
@@ -278,7 +277,22 @@ public class Tareas extends javax.swing.JPanel {
     }//GEN-LAST:event_describTareaActionPerformed
 
     private void addTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTxtMouseClicked
+        String name = nameTarea.getText();
+        String describ = describTarea.getText();
         
+       
+        com.models.Tareas tarea = new com.models.Tareas();
+        tarea.setNombre_tarea(name);
+        tarea.setDescripcion(describ);
+        tarea.setFecha("10 de octubre");
+        tarea.setUsuario_id(1);
+        
+        try{
+            DAOTareas dao = new DAOTareasImpl();
+            dao.registrar(tarea);
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        }
         
     }//GEN-LAST:event_addTxtMouseClicked
 

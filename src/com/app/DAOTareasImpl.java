@@ -2,31 +2,27 @@
 package com.app;
 
 import com.database.ConexionDB;
-import com.interfaces.DAOListas;
-import com.models.Listas;
+import com.interfaces.DAOTareas;
+import com.models.Tareas;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-/**
- *
- * @author Jose Ariel
- */
-public class DAOListasImpl extends ConexionDB implements DAOListas{
+
+public class DAOTareasImpl extends ConexionDB implements DAOTareas{
 
     @Override
-    public void registrar(Listas user) throws Exception {
-        
+    public void registrar(Tareas user) throws Exception {
         try{
             
             this.Conectar();
-            PreparedStatement st = this.conexion.prepareStatement("INSERT INTO listas(nombre_lista, descripcion, fecha, usuario_id) VALUES (?,?,?,?)");
+            PreparedStatement st = this.conexion.prepareStatement("INSERT INTO tarea(nombre_tarea, descripcion, fecha, usuario_id) VALUES (?,?,?,?)");
             
-            st.setString(1, user.getNombre_lista());
+            st.setString(1, user.getNombre_tarea());
             st.setString(2, user.getDescripcion());
             st.setString(3, user.getFecha());
             st.setInt(4,obtenerIdUsuario());
@@ -39,26 +35,21 @@ public class DAOListasImpl extends ConexionDB implements DAOListas{
             this.Cerrar();
         }
     }
-    @Override
-    public void mostrar(Listas user) throws Exception {
-        
-    }
 
     @Override
-    public void modificar(Listas user) throws Exception {
-        
-    }
-
-    @Override
-    public void eliminar(Listas user) throws Exception {
+    public void modificar(Tareas user) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public List<Listas> listar() throws Exception {
+    public void eliminar(Tareas user) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
+    @Override
+    public List<Tareas> listar() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     public static String readTextFromFile(String fileName){
         try {
             FileReader fileReader = new FileReader(fileName);
@@ -100,6 +91,4 @@ public class DAOListasImpl extends ConexionDB implements DAOListas{
         }
         return userId;
     }
-
-    
 }
