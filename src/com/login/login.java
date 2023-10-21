@@ -4,6 +4,9 @@ package com.login;
 
 import com.app.DAOUsersImpl;
 import com.app.app;
+import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import com.interfaces.DAOUsers;
 import com.models.Users;
 
@@ -146,6 +149,7 @@ public class login extends javax.swing.JFrame {
         userLabel.setText("USUARIO");
         bg.add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, -1, -1));
 
+        userTxt.setBackground(new java.awt.Color(255, 255, 255));
         userTxt.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         userTxt.setForeground(new java.awt.Color(204, 204, 204));
         userTxt.setText("Ingrese su nombre de usuario");
@@ -160,7 +164,7 @@ public class login extends javax.swing.JFrame {
                 userTxtActionPerformed(evt);
             }
         });
-        bg.add(userTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, 280, -1));
+        bg.add(userTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, 260, -1));
 
         separator.setForeground(new java.awt.Color(0, 0, 0));
         bg.add(separator, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 260, 20));
@@ -169,6 +173,7 @@ public class login extends javax.swing.JFrame {
         passLabel.setText("CONTRASEÑA");
         bg.add(passLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, -1, -1));
 
+        passTxt.setBackground(new java.awt.Color(255, 255, 255));
         passTxt.setForeground(new java.awt.Color(204, 204, 204));
         passTxt.setText("******");
         passTxt.setBorder(null);
@@ -389,27 +394,7 @@ public class login extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+        FlatMaterialLighterIJTheme.setup();
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

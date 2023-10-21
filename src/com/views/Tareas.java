@@ -250,7 +250,7 @@ public class Tareas extends javax.swing.JPanel {
     }//GEN-LAST:event_nameTareaMouseExited
 
     private void nameTareaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameTareaMousePressed
-        if(nameTarea.getText().equals("Nombre de la lista")){
+        if(nameTarea.getText().equals("Nombre de la tarea")){
             nameTarea.setText("");
             nameTarea.setForeground(Color.black);
         }
@@ -269,7 +269,10 @@ public class Tareas extends javax.swing.JPanel {
     }//GEN-LAST:event_describTareaMouseExited
 
     private void describTareaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_describTareaMousePressed
-        // TODO add your handling code here:
+        if(describTarea.getText().equals("Descripcion")){
+            describTarea.setText("");
+            describTarea.setForeground(Color.black);
+        }
     }//GEN-LAST:event_describTareaMousePressed
 
     private void describTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_describTareaActionPerformed
@@ -277,6 +280,9 @@ public class Tareas extends javax.swing.JPanel {
     }//GEN-LAST:event_describTareaActionPerformed
 
     private void addTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTxtMouseClicked
+        
+        
+        
         String name = nameTarea.getText();
         String describ = describTarea.getText();
         

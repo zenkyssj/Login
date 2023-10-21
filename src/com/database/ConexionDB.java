@@ -11,7 +11,7 @@ import java.util.logging.Level;
  * @author Horizon Studios - Jose Aguilar
  */
 public class ConexionDB {
-    protected Connection conexion;
+    public Connection conexion;
     
     private final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     private final String DB_URL = "jdbc:mysql://localhost/taskmanager";

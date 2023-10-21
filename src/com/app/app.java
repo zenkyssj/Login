@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package com.app;
 
 import com.views.Principal;
@@ -13,13 +10,10 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
-
-/**
- *
- * @author Horizon Studios - Jose Aguilar
- */
 public class app extends javax.swing.JFrame {
 
     int xMouse, yMouse;
@@ -555,7 +549,11 @@ public class app extends javax.swing.JFrame {
     }//GEN-LAST:event_proyectosBtnMouseExited
 
     private void listasBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listasBtnMouseClicked
-        ShowJPanel(new list());
+        try {
+            ShowJPanel(new list());
+        } catch (Exception ex) {
+            Logger.getLogger(app.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_listasBtnMouseClicked
 
     private void principalBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_principalBtnMouseClicked

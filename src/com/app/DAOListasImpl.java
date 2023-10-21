@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 /**
  *
  * @author Jose Ariel
@@ -41,7 +42,24 @@ public class DAOListasImpl extends ConexionDB implements DAOListas{
     }
     @Override
     public void mostrar(Listas user) throws Exception {
-        
+        try{
+            this.Conectar();
+            PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM listas WHERE usuario_id=(?)");
+            st.setInt(1,obtenerIdUsuario());
+            ResultSet rs = st.executeQuery();
+            
+            while(rs.next()){
+                String nombre = rs.getString("nombre_lista");
+                String descripcion = rs.getString("descripcion");
+                String fecha = rs.getString("fecha");
+            }
+            
+            JOptionPane.showMessageDialog(null, rs);
+        } catch (ClassNotFoundException | SQLException e){
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
     }
 
     @Override
@@ -56,7 +74,30 @@ public class DAOListasImpl extends ConexionDB implements DAOListas{
 
     @Override
     public List<Listas> listar() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<Listas> lista = null;
+        try{
+            this.Conectar();
+            PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM listas WHERE usuario_id=(?)");
+            st.setInt(1,obtenerIdUsuario());
+            
+            lista = new ArrayList();
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                Listas user = new Listas();
+                user.setNombre_lista(rs.getString("nombre_lista"));
+                user.setDescripcion(rs.getString("descripcion"));
+                user.setFecha(rs.getString("fecha"));
+                lista.add(user);
+            }
+            rs.close();
+            st.close();
+        } catch (ClassNotFoundException | SQLException e){
+            throw e;
+        } finally{
+            this.Cerrar();
+        }
+        return lista;
+       
     }
     
     public static String readTextFromFile(String fileName){
@@ -101,5 +142,7 @@ public class DAOListasImpl extends ConexionDB implements DAOListas{
         return userId;
     }
 
-    
+    public void mostrar_listas() throws ClassNotFoundException, SQLException{
+        
+    }
 }

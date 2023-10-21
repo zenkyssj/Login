@@ -7,7 +7,16 @@ import com.interfaces.DAOListas;
 import com.interfaces.DAOUsers;
 import com.models.Listas;
 import com.models.Users;
+import com.viewsOthers.list_panel;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.util.List;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,14 +24,25 @@ import java.awt.Color;
  */
 public class list extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Principal
-     */
     public list() {
         initComponents();
+        LoadLists();
+        
     }
-
     
+    private void LoadLists(){
+        try{
+            DAOListas dao = new DAOListasImpl();
+            DefaultTableModel model = (DefaultTableModel) tablaList.getModel();
+            //List<com.models.Listas> dataList = dao.listar();
+            dao.listar().forEach((u) -> model.addRow(new Object[]{u.getNombre_lista(), u.getDescripcion(), u.getFecha()}));
+            
+            
+            
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -34,15 +54,13 @@ public class list extends javax.swing.JPanel {
         addTxt = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         describList = new javax.swing.JTextField();
-        bgList = new com.views.RoundedBorder();
-        ListName = new javax.swing.JLabel();
-        ListDescrib = new javax.swing.JLabel();
-        ListDate = new javax.swing.JLabel();
-        ListPanel = new com.views.RoundedBorder();
+        content = new com.views.RoundedBorder();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaList = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(670, 300));
-        setPreferredSize(new java.awt.Dimension(670, 300));
+        setPreferredSize(new java.awt.Dimension(670, 330));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
@@ -63,6 +81,7 @@ public class list extends javax.swing.JPanel {
         addLista.setRoundTopLeft(20);
         addLista.setRoundTopRight(20);
 
+        nameList.setBackground(new java.awt.Color(255, 255, 255));
         nameList.setForeground(new java.awt.Color(204, 204, 204));
         nameList.setText("Nombre de la lista");
         nameList.setBorder(null);
@@ -115,6 +134,7 @@ public class list extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
         );
 
+        describList.setBackground(new java.awt.Color(255, 255, 255));
         describList.setForeground(new java.awt.Color(204, 204, 204));
         describList.setText("Descripcion");
         describList.setBorder(null);
@@ -166,70 +186,62 @@ public class list extends javax.swing.JPanel {
 
         bg.add(addLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 650, 50));
 
-        bgList.setBackground(new java.awt.Color(255, 255, 255));
-        bgList.setRoundBottomLeft(20);
-        bgList.setRoundBottomRight(20);
-        bgList.setRoundTopLeft(20);
-        bgList.setRoundTopRight(20);
+        content.setBackground(new java.awt.Color(255, 255, 255));
+        content.setRoundBottomLeft(20);
+        content.setRoundBottomRight(20);
+        content.setRoundTopLeft(20);
+        content.setRoundTopRight(20);
 
-        ListName.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
-        ListName.setText("Nombre");
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setBorder(null);
 
-        ListDescrib.setFont(new java.awt.Font("Roboto Thin", 0, 12)); // NOI18N
-        ListDescrib.setText("Descripcion");
+        tablaList.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
+        tablaList.setForeground(new java.awt.Color(102, 102, 102));
+        tablaList.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        ListDate.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
-        ListDate.setText("Fecha de creacion");
+            },
+            new String [] {
+                "Nombre", "Descripcion", "Fecha de creacion"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
-        ListPanel.setRoundBottomLeft(20);
-        ListPanel.setRoundBottomRight(20);
-        ListPanel.setRoundTopLeft(20);
-        ListPanel.setRoundTopRight(20);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaList.setToolTipText("");
+        tablaList.setGridColor(new java.awt.Color(255, 255, 255));
+        tablaList.setName(""); // NOI18N
+        tablaList.setShowGrid(false);
+        jScrollPane1.setViewportView(tablaList);
+        if (tablaList.getColumnModel().getColumnCount() > 0) {
+            tablaList.getColumnModel().getColumn(0).setResizable(false);
+            tablaList.getColumnModel().getColumn(1).setResizable(false);
+            tablaList.getColumnModel().getColumn(2).setResizable(false);
+        }
 
-        javax.swing.GroupLayout ListPanelLayout = new javax.swing.GroupLayout(ListPanel);
-        ListPanel.setLayout(ListPanelLayout);
-        ListPanelLayout.setHorizontalGroup(
-            ListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 613, Short.MAX_VALUE)
+        javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
+        content.setLayout(contentLayout);
+        contentLayout.setHorizontalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        ListPanelLayout.setVerticalGroup(
-            ListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 39, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout bgListLayout = new javax.swing.GroupLayout(bgList);
-        bgList.setLayout(bgListLayout);
-        bgListLayout.setHorizontalGroup(
-            bgListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bgListLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(bgListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(bgListLayout.createSequentialGroup()
-                        .addComponent(ListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(19, Short.MAX_VALUE))
-                    .addGroup(bgListLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(ListName)
-                        .addGap(131, 131, 131)
-                        .addComponent(ListDescrib)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ListDate)
-                        .addGap(104, 104, 104))))
-        );
-        bgListLayout.setVerticalGroup(
-            bgListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bgListLayout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addGroup(bgListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ListName)
-                    .addComponent(ListDescrib)
-                    .addComponent(ListDate))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(176, Short.MAX_VALUE))
+        contentLayout.setVerticalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contentLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        bg.add(bgList, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 650, 250));
+        bg.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 650, 240));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -241,7 +253,7 @@ public class list extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 345, Short.MAX_VALUE)
+            .addGap(0, 348, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -283,7 +295,10 @@ public class list extends javax.swing.JPanel {
     }//GEN-LAST:event_describListMouseExited
 
     private void describListMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_describListMousePressed
-        // TODO add your handling code here:
+        if(describList.getText().equals("Descripcion")){
+            describList.setText("");
+            describList.setForeground(Color.black);
+        }
     }//GEN-LAST:event_describListMousePressed
 
     private void describListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_describListActionPerformed
@@ -299,11 +314,12 @@ public class list extends javax.swing.JPanel {
         lista.setNombre_lista(name);
         lista.setDescripcion(describ);
         lista.setFecha("10 de octubre");
-        lista.setUsuario_id(1);
+        
         
         try{
             DAOListas dao = new DAOListasImpl();
             dao.registrar(lista);
+            
         } catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -311,17 +327,15 @@ public class list extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel ListDate;
-    private javax.swing.JLabel ListDescrib;
-    private javax.swing.JLabel ListName;
-    private com.views.RoundedBorder ListPanel;
     private com.views.RoundedBorder addLista;
     private javax.swing.JPanel addTxt;
     private com.views.RoundedBorder bg;
-    private com.views.RoundedBorder bgList;
+    private com.views.RoundedBorder content;
     private javax.swing.JTextField describList;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField nameList;
+    private javax.swing.JTable tablaList;
     // End of variables declaration//GEN-END:variables
 }
