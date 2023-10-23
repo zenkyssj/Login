@@ -35,6 +35,7 @@ public class list extends javax.swing.JPanel {
             DAOListas dao = new DAOListasImpl();
             DefaultTableModel model = (DefaultTableModel) tablaList.getModel();
             //List<com.models.Listas> dataList = dao.listar();
+            model.setRowCount(0);
             dao.listar().forEach((u) -> model.addRow(new Object[]{u.getNombre_lista(), u.getDescripcion(), u.getFecha()}));
             
             
@@ -323,6 +324,13 @@ public class list extends javax.swing.JPanel {
         } catch(Exception e){
             System.out.println(e.getMessage());
         }
+        
+        nameList.setText("Nombre de la lista");
+        nameList.setForeground(new Color(204,204,204));
+        describList.setText("Descripcion");
+        describList.setForeground(new Color(204,204,204));
+        
+        LoadLists();
     }//GEN-LAST:event_addTxtMouseClicked
 
 

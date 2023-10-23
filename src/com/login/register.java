@@ -154,6 +154,7 @@ public class register extends javax.swing.JFrame {
         userLabel.setText("USUARIO");
         jPanel1.add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, -1, -1));
 
+        userText.setBackground(new java.awt.Color(255, 255, 255));
         userText.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         userText.setForeground(new java.awt.Color(204, 204, 204));
         userText.setText("Ingrese su nombre de usuario");
@@ -177,6 +178,7 @@ public class register extends javax.swing.JFrame {
         correoLabel.setText("CORREO");
         jPanel1.add(correoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, -1, -1));
 
+        correoText.setBackground(new java.awt.Color(255, 255, 255));
         correoText.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         correoText.setForeground(new java.awt.Color(204, 204, 204));
         correoText.setText("Ingrese su nombre de usuario");
@@ -200,6 +202,7 @@ public class register extends javax.swing.JFrame {
         passLabel.setText("CONTRASEÑA");
         jPanel1.add(passLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, -1, -1));
 
+        passText.setBackground(new java.awt.Color(255, 255, 255));
         passText.setForeground(new java.awt.Color(204, 204, 204));
         passText.setText("******");
         passText.setBorder(null);
@@ -213,7 +216,7 @@ public class register extends javax.swing.JFrame {
                 passTextActionPerformed(evt);
             }
         });
-        jPanel1.add(passText, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, -1, -1));
+        jPanel1.add(passText, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 260, -1));
 
         separator2.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(separator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 320, 260, 20));

@@ -2,7 +2,7 @@
 package com.app;
 
 import com.views.Principal;
-import com.views.Tareas;
+import com.views.tareas;
 import com.views.list;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -367,6 +367,11 @@ public class app extends javax.swing.JFrame {
 
         cuentaBtn.setBackground(new java.awt.Color(255, 255, 255));
         cuentaBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cuentaBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cuentaBtnMouseClicked(evt);
+            }
+        });
 
         cuentaTxt.setBackground(new java.awt.Color(255, 255, 255));
         cuentaTxt.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
@@ -565,8 +570,12 @@ public class app extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseClicked
 
     private void tareasBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tareasBtnMouseClicked
-       ShowJPanel(new Tareas());
+       ShowJPanel(new tareas());
     }//GEN-LAST:event_tareasBtnMouseClicked
+
+    private void cuentaBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cuentaBtnMouseClicked
+        ShowJPanel(new Account());
+    }//GEN-LAST:event_cuentaBtnMouseClicked
 
     /**
      * @param args the command line arguments

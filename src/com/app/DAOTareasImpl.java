@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -48,7 +49,29 @@ public class DAOTareasImpl extends ConexionDB implements DAOTareas{
 
     @Override
     public List<Tareas> listar() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<Tareas> tarea = null;
+        try{
+            this.Conectar();
+            PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM tarea WHERE usuario_id=(?)");
+            st.setInt(1,obtenerIdUsuario());
+            
+            tarea = new ArrayList();
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                Tareas user = new Tareas();
+                user.setNombre_tarea(rs.getString("nombre_tarea"));
+                user.setDescripcion(rs.getString("descripcion"));
+                user.setFecha(rs.getString("fecha"));
+                tarea.add(user);
+            }
+            rs.close();
+            st.close();
+        } catch (ClassNotFoundException | SQLException e){
+            throw e;
+        } finally{
+            this.Cerrar();
+        }
+        return tarea;
     }
     public static String readTextFromFile(String fileName){
         try {

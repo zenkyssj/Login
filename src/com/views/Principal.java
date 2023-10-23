@@ -1,14 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package com.views;
 
+import java.awt.BorderLayout;
 import java.awt.Cursor;
 import static java.awt.Cursor.HAND_CURSOR;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import javax.swing.JPanel;
 
 public class Principal extends javax.swing.JPanel {
 
@@ -113,6 +112,11 @@ public class Principal extends javax.swing.JPanel {
         tareas.setRoundBottomRight(30);
         tareas.setRoundTopLeft(30);
         tareas.setRoundTopRight(30);
+        tareas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tareasMouseClicked(evt);
+            }
+        });
 
         tareasTxt.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
         tareasTxt.setForeground(new java.awt.Color(255, 255, 255));
@@ -144,6 +148,11 @@ public class Principal extends javax.swing.JPanel {
         listas.setRoundBottomRight(30);
         listas.setRoundTopLeft(30);
         listas.setRoundTopRight(30);
+        listas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listasMouseClicked(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -238,10 +247,26 @@ public class Principal extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void listasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listasMouseClicked
+        ShowJPanel(new list());
+    }//GEN-LAST:event_listasMouseClicked
+
+    private void tareasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tareasMouseClicked
+        ShowJPanel(new tareas());
+    }//GEN-LAST:event_tareasMouseClicked
+    private void ShowJPanel(JPanel p){
+        p.setSize(670, 370);
+        p.setLocation(0,0);
+        
+        this.removeAll();
+        this.add(p, BorderLayout.CENTER);
+        this.revalidate();
+        this.repaint();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
